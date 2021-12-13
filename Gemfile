@@ -11,6 +11,7 @@ gem 'devise'
 gem 'puma', '~> 5.0'
 gem 'securerandom'
 gem 'sqlite3', '~> 1.4'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'factory_bot_rails'
@@ -26,6 +27,7 @@ group :development do
 end
 
 group :test do
+  gem "json_matchers"
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
