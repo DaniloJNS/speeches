@@ -3,4 +3,8 @@ class Section < ApplicationRecord
   has_many :speeches
 
   enum type_section: { morning: 0, evening: 1 }
+
+  after_create if: :evening? do
+    Speech.create(title: "Almoço", time: 720, section: self, duration: 60)
+  end
 end
