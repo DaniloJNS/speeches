@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :track do
-    sequence(:title) { |n| "Track #{convert_alfabeto n}" }
+    sequence(:title) { |n| "Track #{convert_alphabet n}" }
     conference
   end
 end
