@@ -1,6 +1,6 @@
-# README
+# Speeches
 
-
+Uma API rails para organizar e consultar palestras
 
 ## 💎 Versão do Ruby
 
@@ -11,7 +11,7 @@
 - rails - Aplicação Web;
 - rspec-rails - Testes de Requisição, Unitários e de Sistema;
 - simplecov - Relatório de cobertura de testes;
-- factory_bot_rails - Gerador de seeds automatizado;
+- factory_bot_rails - Gerador de seeds automatizajdo;
 - rubocop-rails - Garante que o código cumpra as melhores práticas Rails e convenções de codificação;
 - shoulda-matchers - Testes com `Mock`, `Stub`, `Dummy`, `Fake` e `Spy`;
 
