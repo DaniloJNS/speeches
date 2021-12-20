@@ -11,7 +11,7 @@ Uma API rails para organizar e consultar palestras
 - rails - Aplicação Web;
 - rspec-rails - Testes de Requisição, Unitários e de Sistema;
 - simplecov - Relatório de cobertura de testes;
-- factory_bot_rails - Gerador de seeds automatizajdo;
+- factory_bot_rails - Gerador de seeds automatizado;
 - rubocop-rails - Garante que o código cumpra as melhores práticas Rails e convenções de codificação;
 - shoulda-matchers - Testes com `Mock`, `Stub`, `Dummy`, `Fake` e `Spy`;
 
