@@ -1,4 +1,6 @@
-#bfrozen_string_literal: true
+# frozen_string_literal: true
+
+# bfrozen_string_literal: true
 
 require 'rails_helper'
 require 'json'
@@ -28,7 +30,7 @@ describe Api::V1::SpeechesController do
 
         expect(response).to have_http_status(:created)
         expect(response.content_type).to include('application/json')
-        expect(parsed_body).to eq(JSON.parse(open("#{Rails.root}/spec/support/api/case.json").read,
+        expect(parsed_body).to eq(JSON.parse(Rails.root.join('spec/support/api/case.json').read,
                                              symbolize_names: true))
       end
     end

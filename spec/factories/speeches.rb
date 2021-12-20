@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :speech do
     time { 540 }
-    title { "Otimizando CSS em aplicações Rails" }
+    title { 'Otimizando CSS em aplicações Rails' }
     duration { 1 }
     section
   end

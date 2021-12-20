@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
@@ -9,9 +10,9 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'puma', '~> 5.0'
+gem 'rack-cors'
 gem 'securerandom'
 gem 'sqlite3', '~> 1.4'
-gem 'rack-cors'
 
 group :development, :test do
   gem 'factory_bot_rails'
@@ -21,13 +22,13 @@ end
 
 group :development do
   gem 'listen', '~> 3.3'
-  gem 'spring'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'rubocop-rails', require: false
+  gem 'spring'
 end
 
 group :test do
-  gem "json_matchers"
+  gem 'json_matchers'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end

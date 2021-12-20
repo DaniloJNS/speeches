@@ -1,0 +1,41 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.0
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - "bin/**/*"
+    - "vendor/**/*"
+    - "db/**/*"
+    - "node_modules/**/*"
+
+Metrics/BlockLength:
+  IgnoredMethods:
+    [
+      "describe",
+      "context",
+      "feature",
+      "scenario",
+      "let",
+      "it",
+      "draw",
+      "configure",
+      "factory_sections",
+    ]
+Lint/EmptyBlock:
+  Exclude:
+    - "spec/factories/conferences.rb"
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
