@@ -1,24 +1,47 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
+## 💎 Versão do Ruby
 
-* System dependencies
+- Ruby v3.0.2 | Rails >= 6.1.4.1
 
-* Configuration
+### 📦 Gems
 
-* Database creation
+- rails - Aplicação Web;
+- rspec-rails - Testes de Requisição, Unitários e de Sistema;
+- simplecov - Relatório de cobertura de testes;
+- factory_bot_rails - Gerador de seeds automatizado;
+- rubocop-rails - Garante que o código cumpra as melhores práticas Rails e convenções de codificação;
+- shoulda-matchers - Testes com `Mock`, `Stub`, `Dummy`, `Fake` e `Spy`;
 
-* Database initialization
+## ⚙️ Configuração
 
-* How to run the test suite
+```sh
+bin/setup
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## ⚙️ Criação do Banco de Dados
 
-* Deployment instructions
+```sh
+rails db:migrate
+```
 
-* ...
+## ⚙️ Inicialização do Banco de Dados
+
+```sh
+rails db:seed
+```
+
+## ✅ Como rodar a suíte de testes
+
+```sh
+rspec
+rubocop
+```
+
+## 🚀 Como rodar a aplicação
+
+```sh
+rails server
+```
