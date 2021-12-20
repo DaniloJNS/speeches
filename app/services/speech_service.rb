@@ -66,8 +66,8 @@ def save
 
   def factory_tracks objs 
     tracks = [] 
-    tracks_count(total_duration(objs)).times do
-      tracks << FactoryBot.create(:track, conference: @conference)
+    tracks_count(total_duration(objs)).times.with_index do |i|
+      tracks << Track.create(title: "Track #{UtilityService.convert_alphabet(i)}", conference: @conference)
     end
     tracks
   end
@@ -76,7 +76,7 @@ def save
     tracks.each do |track|
      speeches = morning ? speech_morning(speeches) : speech_evening(speeches) 
      time = morning ? MORNING_INITIAL_TIME : EVENING_INITIAL_TIME
-     section = morning ? FactoryBot.create(:section, :morning, track: track) : FactoryBot.create(:section, track: track)
+     section = morning ? Section.create(type_section: "morning", track: track) : Section.create(type_section: "evening", track: track)
      factory_speech(speeches.first, section: section, time: time)
      speeches = speeches.second
     end
@@ -88,5 +88,6 @@ def save
       time += Speech.create(title: obj[:title], duration: obj[:duration], time: time, 
                             section: section).duration
     end
+    Speech.create(title: "Evento de Networking", duration: 0, time: 1020, section: section) if section.evening?
   end
 end
