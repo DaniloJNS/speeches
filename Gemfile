@@ -11,7 +11,7 @@ gem 'bcrypt'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'jwt'
-gem 'pg'
+gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rack-cors'
 gem 'redis'

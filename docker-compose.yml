@@ -11,10 +11,31 @@ services:
       - 3000:3000
     tty: true
     stdin_open: true
-    environment:
-      DOCKER_COMPOSE_SESSION: true
-    networks:
-      - platform_web_network
+    env_file: .env.development
+    depends_on:
+      - db
+
+  jobs:
+    build: .
+    container_name: sidekiq
+    command: "bin/setup_sidekiq"
+    volumes:
+      - .:/opt/app
+    env_file: .env.development
+    depends_on:
+      - db
+      - cache
+
+  db:
+    image: postgres:13-alpine
+    container_name: postgresql
+    env_file: .env.database
+
+  cache:
+    image: redis
+    container_name: redis
+    command: "redis-server"
+
 networks:
   platform_web_network:
     external: true

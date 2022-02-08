@@ -29,10 +29,10 @@ FileUtils.chdir APP_ROOT do
 
   puts "\n== Removing old logs and tempfiles =="
   system! 'bin/rails log:clear tmp:clear'
-  system! 'rm -Rf tmp'
 
   if ENV.has_key? "DOCKER_COMPOSE_SESSION" 
     puts "\n== Starting application server ==" 
+    system! 'rm -Rf tmp/pids/server.pid'
     system! 'bin/rails s -b 0.0.0.0'
   else
     puts "\n== Restarting application server =="
