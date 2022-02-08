@@ -14,6 +14,7 @@ class SpeechService < ApplicationService
 
   def call
     save
+    ExportService.call @conference
     @conference
   end
 

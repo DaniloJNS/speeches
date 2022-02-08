@@ -40,6 +40,10 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
+
 RSpec.configure do |config|
   config.include ApiMacro
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

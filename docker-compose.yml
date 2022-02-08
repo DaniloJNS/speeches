@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  api:
+    build: .
+    container_name: speeches
+    command: bin/setup
+    volumes:
+      - .:/opt/app
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true
+    environment:
+      DOCKER_COMPOSE_SESSION: true
+    networks:
+      - platform_web_network
+networks:
+  platform_web_network:
+    external: true

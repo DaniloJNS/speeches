@@ -11,7 +11,9 @@ describe Api::V1::SpeechesController do
       track = create(:track, title: 'track A')
       section = create(:section, type_section: 'morning', track: track)
       create(:speech, title: 'Um mundo sem StackOverflow', duration: 60, section: section)
-      get '/api/v1/speeches'
+      user = create(:user)
+      token = AuthenticationTokenService.call user.id
+      get '/api/v1/speeches', headers: { 'Authorization' => "Token #{token}" }
 
       expect(response).to have_http_status(200)
       expect(response.body).to include('Um mundo sem StackOverflow')
@@ -26,7 +28,10 @@ describe Api::V1::SpeechesController do
       let(:file) { fixture_file_upload('case.txt') }
 
       it 'should be return a conference' do
-        post '/api/v1/speeches', params: { file: file, format: 'json' }
+        user = create(:user)
+        token = AuthenticationTokenService.call user.id
+        post '/api/v1/speeches', params: { file: file, format: 'json' },
+                                 headers: { Authorization: "Token #{token}" }
 
         expect(response).to have_http_status(:created)
         expect(response.content_type).to include('application/json')
@@ -35,4 +40,15 @@ describe Api::V1::SpeechesController do
       end
     end
   end
+  context 'get /api/v1/speech/:id' do
+    let(:conference) { ImportService.call fixture_file_upload('case.txt') }
+
+    it 'should be return a conference in txt file' do
+      get "/api/v1/speeches/#{conference.id}"
+
+      expect(response).to have_http_status(102)
+    end
+  end
+
+  # TODO: Se o arquivo foi gerada, ele é enviado
 end
