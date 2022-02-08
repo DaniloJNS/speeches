@@ -23,6 +23,7 @@ describe Api::V1::SpeechesController do
       expect(response.body).to include('morning')
     end
   end
+
   describe '#create' do
     context 'post /api/v1/speeches' do
       let(:file) { fixture_file_upload('case.txt') }
@@ -40,11 +41,14 @@ describe Api::V1::SpeechesController do
       end
     end
   end
+
   context 'get /api/v1/speech/:id' do
     let(:conference) { ImportService.call fixture_file_upload('case.txt') }
 
     it 'should be return a conference in txt file' do
-      get "/api/v1/speeches/#{conference.id}"
+      user = create(:user)
+      token = AuthenticationTokenService.call user.id
+      get "/api/v1/speeches/#{conference.id}", headers: { Authorization: "Token #{token}" }
 
       expect(response).to have_http_status(102)
     end

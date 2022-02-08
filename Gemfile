@@ -11,12 +11,12 @@ gem 'bcrypt'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'jwt'
+gem 'pg'
 gem 'puma', '~> 5.0'
 gem 'rack-cors'
 gem 'redis'
 gem 'securerandom'
 gem 'sidekiq'
-gem 'sqlite3', '~> 1.4'
 
 group :development, :test do
   gem 'factory_bot_rails'
