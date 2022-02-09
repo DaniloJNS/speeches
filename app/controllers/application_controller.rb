@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
-  class Unauthorized < StandardError; end
+  class AuthenticationError < StandardError; end
   include ActionController::HttpAuthentication::Token
 
   rescue_from ActionController::ParameterMissing, with: :paremeter_missing
-  rescue_from Unauthorized, with: :handle_unauthorized
+  rescue_from AuthenticationError, with: :handle_unauthorized
 
   private
 
@@ -13,9 +13,8 @@ class ApplicationController < ActionController::API
     token, _options = token_and_options(request)
     user_id = AuthenticationTokenService.decode token
     User.find(user_id[:user_id])
-  rescue StandardError
+  rescue ActiveRecord::RecordNotFound
     render status: :unauthorized
-    # TODO: Usar uma class apropiada para lidar com error
   end
 
   def paremeter_missing(error)
