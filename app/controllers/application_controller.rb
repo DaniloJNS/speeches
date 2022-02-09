@@ -17,6 +17,12 @@ class ApplicationController < ActionController::API
     render status: :unauthorized
   end
 
+  def handle_limits_exceeded(user_id)
+    AuthenticationService.call user_id
+    render json: { error: 'Acesso bloqueado, contate o administrador' },
+           status: :locked
+  end
+
   def paremeter_missing(error)
     render json: { error: error.message }, status: :unprocessable_entity
   end

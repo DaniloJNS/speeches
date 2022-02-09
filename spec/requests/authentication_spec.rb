@@ -38,5 +38,20 @@ describe 'authentication' do
 
       expect(response).to have_http_status(:unauthorized)
     end
+    it 'return locked when 5 attemps with wrong password' do
+      5.times do
+        post '/api/v1/authenticate', params: { user_name: user.user_name,
+                                               password: '123456' }
+
+        expect(response).to have_http_status(:unauthorized)
+      end
+
+      post '/api/v1/authenticate', params: { user_name: user.user_name,
+                                             password: '123456' }
+
+      expect(response).to have_http_status(:locked)
+    end
+
+    # TODO: O restart do numero tentativas quando autorizado com sucesso
   end
 end
