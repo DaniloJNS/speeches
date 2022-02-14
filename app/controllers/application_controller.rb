@@ -11,10 +11,12 @@ class ApplicationController < ActionController::API
 
   def authentication
     token, _options = token_and_options(request)
+    return handle_unauthorized unless token
+
     user_id = AuthenticationTokenService.decode token
     User.find(user_id[:user_id])
   rescue ActiveRecord::RecordNotFound
-    render status: :unauthorized
+    handle_unauthorized
   end
 
   def handle_limits_exceeded(user_id)

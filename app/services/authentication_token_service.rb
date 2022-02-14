@@ -16,5 +16,7 @@ class AuthenticationTokenService < ApplicationService
   def self.decode(token)
     JWT.decode(token, HMAC_SECRET, true, { algorithm: ALGORITM_TYPE })
        .first.symbolize_keys
+  rescue JWT::DecodeError
+    { user_id: nil }
   end
 end

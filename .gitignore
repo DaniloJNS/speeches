@@ -40,5 +40,5 @@
 .env.development
 
 # Ignore persist data redis
-./redis/appendonly.aof
-./redis/dump.rdb
+/redis/appendonly.aof
+/redis/dump.rdb
