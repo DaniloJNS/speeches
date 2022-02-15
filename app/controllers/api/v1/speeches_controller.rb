@@ -13,7 +13,7 @@ module Api
       def create
         @response = ImportService.call params[:file]
         if @response
-          render status: :created, json: format_json(@response)
+          render :create, status: :created
         else
           render status: :unprocessable_entity
         end
