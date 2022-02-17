@@ -1,3 +1,3 @@
-class SpeechSerializer < ActiveModel::Serializer
+class SpeechSerializer < ApplicationSerializer
   attributes :time, :title, :duration
 end
