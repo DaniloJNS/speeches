@@ -7,13 +7,13 @@ module Api
       before_action :authentication, only: %i[index create show]
       def index
         @conference = Conference.all
-        render json: format_json(@conference)
+        render json: @conference
       end
 
       def create
         @response = ImportService.call params[:file]
         if @response
-          render :create, status: :created
+          render json: @response, status: :created
         else
           render status: :unprocessable_entity
         end
